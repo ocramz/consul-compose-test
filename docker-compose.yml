@@ -6,42 +6,43 @@ services:
     # container_name: kvs-c
     hostname: kvs1
     command: -server -advertise 10.0.2.1 -bootstrap-expect 3
+    # ports:
+    #   - "8300:8300"
     ports:
       - "10.0.2.1:8300:8300"
       - "10.0.2.1:8301:8301"  
-    # networks:
-    #   - net    
+    networks:
+      - net  
+    
 
   kvs2:
     image : ocramz/compute-kvs
     hostname: kvs2
     command: -server -advertise 10.0.2.2 -join 10.0.2.1
-    ports:
-      - "10.0.2.2:8300:8300"
-      - "10.0.2.2:8301:8301"    
-    # networks:
-    #   - net
+    # ports:
+    #   - "8300:8300"    
+    # # ports:
+    # #   - "10.0.2.2:8300:8300"
+    # #   - "10.0.2.2:8301:8301"    
+    networks:
+      - net
     
   kvs3:
     image : ocramz/compute-kvs
     hostname: kvs3
     command: -server -advertise 10.0.2.3 -join 10.0.2.1
-    ports:
-      - "10.0.2.3:8300:8300"
-      - "10.0.2.3:8301:8301"       
-    # networks:
-    #   - net
+    # ports:
+    #   - "8300:8300"    
+    # # ports:
+    # #   - "10.0.2.3:8300:8300"
+    # #   - "10.0.2.3:8301:8301"       
+    networks:
+      - net
 
-# networks:
-#   net:
-#     driver: overlay
-#     ipam:
-#       config:
-#         - subnet: 10.0.2.0/24 
-
-# networks:
-#   mynet:
-#     driver: overlay
-#     ipam:
-#       config:
-#       - subnet: 10.0.2.0/24    
+networks:
+  net:
+    driver: overlay
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24 
+  
