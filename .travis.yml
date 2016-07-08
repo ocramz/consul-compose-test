@@ -22,9 +22,9 @@ before_install:
   - sudo chmod +x /usr/local/bin/docker-compose
   
 script:
-  - docker-compose up &> logfile &
-  - sleep 60
+  - docker-compose up # &> logfile &
+  # - sleep 60
   - docker network ls
-  # # shut down docker-compose
+  # # # shut down docker-compose
   - docker-compose down
   - cat logfile
