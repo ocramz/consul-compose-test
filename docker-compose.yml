@@ -1,0 +1,8 @@
+version: '2'  
+  
+services:  
+  kvs:
+    image: ocramz/compute-kvs
+    container_name: kvs-c
+    hostname: kvs
+    command: -server -advertise 10.0.2.2 -bootstrap #-expect 2
